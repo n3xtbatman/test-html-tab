@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tabbed Mini-Site (3 Tabs, No Extra Whitespace)</title>
+<title>Tabbed Mini-Site (3 Tabs)</title>
 <style>
   /* ─── RESET & BASE ─────────────────────────────────────────── */
   *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Helvetica,Arial,sans-serif;}
@@ -11,85 +11,40 @@
   /* ─── OUTER WRAPPER ────────────────────────────────────────── */
   .tabs-wrapper{
     max-width:1200px;
-    margin:0 auto 10px;           /*  ← bottom buffer here  */
+    margin:0 auto 20px;          /*  ← 20 px bottom buffer  */
     padding:1rem 0;
   }
 
   /* ─── TAB BAR ──────────────────────────────────────────────── */
   .tab-bar{
-    display:flex;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    scrollbar-width:none;        /* Firefox hide scrollbar */
+    display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
   }
-  .tab-bar::-webkit-scrollbar{display:none;} /* Chrome/iOS hide */
+  .tab-bar::-webkit-scrollbar{display:none;}
   .tab{
-    flex:1 1 150px;
-    padding:.8rem 1rem;
-    text-align:center;
-    cursor:pointer;
-    white-space:nowrap;
-    font-weight:700;
-    font-size:clamp(.8rem,2.6vw,.95rem);
+    flex:1 1 150px;padding:.8rem 1rem;text-align:center;cursor:pointer;
+    white-space:nowrap;font-weight:700;font-size:clamp(.8rem,2.6vw,.95rem);
     transition:background .15s;
   }
   .tab[aria-selected="true"] {background:#fff;}
   .tab[aria-selected="false"]{background:#f1f1f1;}
 
   /* ─── PANELS ───────────────────────────────────────────────── */
-  .panel{
-    display:none;
-    padding:1rem 0;              /* slimmer vertical space */
-    gap:2rem;
-  }
+  .panel{display:none;padding:1rem 0;gap:2rem;}
   .panel.active{display:flex;}
-  .panel img{
-    width:100%;
-    max-width:310px;
-    border-radius:6px;
-  }
-  .panel-content{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-  }
-  .panel h6{
-    font-size:.76rem;
-    margin-bottom:.35rem;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-  }
-  .panel h2{
-    font-size:1.85rem;
-    line-height:1.2;
-    margin:1rem 0;
-  }
-  .panel p{
-    max-width:45ch;
-    line-height:1.45;
-    margin-bottom:1.1rem;
-    font-size:.92rem;
-  }
-  .btn-row{
-    display:flex;
-    gap:1rem;
-    margin-top:auto;
-  }
+  .panel img{width:100%;max-width:310px;border-radius:6px;}
+  .panel-content{flex:1;display:flex;flex-direction:column;}
+  .panel h6{font-size:.76rem;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.04em;}
+  .panel h2{font-size:1.85rem;line-height:1.2;margin:1rem 0;}
+  .panel p{max-width:45ch;line-height:1.45;margin-bottom:1.1rem;font-size:.92rem;}
+  .btn-row{display:flex;gap:1rem;margin-top:auto;}
 
   /* ─── BUTTONS ──────────────────────────────────────────────── */
   .btn{
-    padding:.8rem 2rem;
-    font-weight:600;
-    border:1px solid #111;
-    background:#fff;
-    cursor:pointer;
+    padding:.8rem 2rem;font-weight:600;border:1px solid #111;background:#fff;cursor:pointer;
     transition:background .18s,color .18s,transform .18s,box-shadow .18s;
   }
-  .btn:hover,
-  .btn:focus-visible{
-    background:#111;
-    color:#fff;
-    transform:translateY(-2px);
+  .btn:hover,.btn:focus-visible{
+    background:#111;color:#fff;transform:translateY(-2px);
     box-shadow:0 4px 10px rgba(0,0,0,.15);
   }
 
