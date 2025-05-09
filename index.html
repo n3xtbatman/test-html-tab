@@ -2,50 +2,41 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tabbed Showcase</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tabbed Mini-Site (3 Tabs)</title>
 <style>
-  /* ----------  CSS RESET  ---------- */
   *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Helvetica,Arial,sans-serif;}
 
-  /* ----------  OUTER WRAPPER  ---------- */
-  .tabs-wrapper{
-    max-width:1200px; margin:0 auto; border:1px solid #111; padding:2rem;
-  }
+  .tabs-wrapper{max-width:1200px;margin:0 auto;padding:2rem;}
 
-  /* ----------  TAB BAR  ---------- */
+  /* TAB BAR */
   .tab-bar{
-    display:flex; flex-wrap:wrap; border:1px solid #111; border-bottom:none;
+    display:flex; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none;
+    border:1px solid #111; border-bottom:none;
   }
+  .tab-bar::-webkit-scrollbar{display:none;}
   .tab{
-    flex:1 1 160px;                  /* responsive width, min 160 px */
-    padding:1.2rem; text-align:center; cursor:pointer;
-    font-weight:700; border-right:1px solid #111;
-    transition:background .15s;
+    flex:1 1 160px; padding:1rem; text-align:center; cursor:pointer; white-space:nowrap;
+    font-weight:700; font-size:clamp(.8rem,2.6vw,.95rem);
+    border-right:1px solid #111; transition:background .15s;
   }
   .tab:last-child{border-right:none;}
-  .tab[aria-selected="true"]{background:#fff;}   /* active */
+  .tab[aria-selected="true"]{background:#fff;}
   .tab[aria-selected="false"]{background:#f9f9f9;}
 
-  /* ----------  PANEL  ---------- */
-  .panel{
-    display:none; border:1px solid #111; padding:2rem; gap:3rem;
-  }
+  /* PANELS */
+  .panel{display:none;border:1px solid #111;padding:2rem;gap:3rem;}
   .panel.active{display:flex;}
-  .panel img{width:100%; max-width:350px; background:#d9d9d9;}
-  .panel-content{flex:1;}
-  .panel h6{font-size:.9rem; margin-bottom:.5rem; text-transform:uppercase;}
-  .panel h2{font-size:2.5rem; line-height:1.15; margin:1rem 0;}
-  .panel p{max-width:45ch; line-height:1.45; margin-bottom:1.5rem;}
-
-  .btn-row{display:flex; gap:1rem;}
-  .btn{
-    padding:.9rem 2.5rem; font-weight:600; cursor:pointer;
-    border:1px solid #111; background:#fff; transition:background .2s;
-  }
+  .panel img{width:100%;max-width:320px;border-radius:6px;}
+  .panel-content{flex:1;display:flex;flex-direction:column;}
+  .panel h6{font-size:.78rem;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.04em;}
+  .panel h2{font-size:2rem;line-height:1.2;margin:1rem 0;}
+  .panel p{max-width:45ch;line-height:1.45;margin-bottom:1.5rem;font-size:.95rem;}
+  .btn-row{display:flex;gap:1rem;margin-top:auto;}
+  .btn{padding:.9rem 2rem;font-weight:600;border:1px solid #111;background:#fff;cursor:pointer;}
   .btn:hover{background:#f3f3f3;}
 
-  /* ----------  MOBILE  ---------- */
+  /* MOBILE STACK */
   @media(max-width:768px){
     .panel{flex-direction:column;}
     .panel img{max-width:100%;}
@@ -57,48 +48,59 @@
 <div class="tabs-wrapper">
   <!-- TAB HEADERS -->
   <nav class="tab-bar" role="tablist">
-    <div class="tab" role="tab" aria-selected="true"  data-panel="p1">Tab one</div>
-    <div class="tab" role="tab" aria-selected="false" data-panel="p2">Tab two</div>
-    <div class="tab" role="tab" aria-selected="false" data-panel="p3">Tab three</div>
-    <div class="tab" role="tab" aria-selected="false" data-panel="p4">Tab four</div>
-    <div class="tab" role="tab" aria-selected="false" data-panel="p5">Tab five</div>
-    <div class="tab" role="tab" aria-selected="false" data-panel="p6">Tab six</div>
+    <div class="tab" role="tab" aria-selected="true"  data-panel="p1">WHICH&nbsp;INDUSTRY?</div>
+    <div class="tab" role="tab" aria-selected="false" data-panel="p2">FINANCING</div>
+    <div class="tab" role="tab" aria-selected="false" data-panel="p3">TAKE&nbsp;A&nbsp;COURSE</div>
   </nav>
 
   <!-- TAB PANELS -->
   <section id="p1" class="panel active" role="tabpanel">
-      <img alt="" />
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=60"
+           alt="People collaborating in a modern small-business workspace">
       <div class="panel-content">
-          <h6>Tagline</h6>
-          <h2>Medium length section<br>heading goes here</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+          <h6>Which Industry?</h6>
+          <h2>Which industry is the most aligned with your goals</h2>
+          <p>Start by identifying the sector that best matches your interests, risk tolerance, and growth objectives.</p>
           <div class="btn-row">
-            <button class="btn">Explore</button>
-            <button class="btn">Browse &rsaquo;</button>
+            <button class="btn">Take a Quiz</button>
           </div>
       </div>
   </section>
 
-  <!-- duplicate / change content for other panels -->
-  <section id="p2" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Two Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
-  <section id="p3" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Three Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
-  <section id="p4" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Four Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
-  <section id="p5" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Five Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
-  <section id="p6" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Six Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
+  <section id="p2" class="panel" role="tabpanel">
+      <img src="https://images.unsplash.com/photo-1556740714-a8395b3bf30f?auto=format&fit=crop&w=800&q=60"
+           alt="Hands signing small-business financing documents">
+      <div class="panel-content">
+          <h6>Financing</h6>
+          <h2>Need financing for your small business?</h2>
+          <p>Explore tailored funding solutions and calculate repayment scenarios in seconds.</p>
+          <div class="btn-row">
+            <button class="btn">Finance Calculator</button>
+          </div>
+      </div>
+  </section>
+
+  <section id="p3" class="panel" role="tabpanel">
+      <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=800&q=60"
+           alt="Entrepreneur learning online course on laptop">
+      <div class="panel-content">
+          <h6>Take a Course</h6>
+          <h2>Continuing education is key to being a great entrepreneur</h2>
+          <p>Sharpen your skills with curated courses designed for busy founders.</p>
+          <div class="btn-row">
+            <button class="btn">Sign Up</button>
+          </div>
+      </div>
+  </section>
 </div>
 
 <script>
-  /* simple tab switcher */
   const tabs   = document.querySelectorAll('.tab');
   const panels = document.querySelectorAll('.panel');
-
   tabs.forEach(tab=>{
-    tab.addEventListener('click', ()=> {
-      /* update tab states */
+    tab.addEventListener('click', ()=>{
       tabs.forEach(t=>t.setAttribute('aria-selected',false));
       tab.setAttribute('aria-selected',true);
-
-      /* show matching panel */
       panels.forEach(p=>p.classList.remove('active'));
       document.getElementById(tab.dataset.panel).classList.add('active');
     });
