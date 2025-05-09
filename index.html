@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabbed Showcase</title>
+<style>
+  /* ----------  CSS RESET  ---------- */
+  *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Helvetica,Arial,sans-serif;}
+
+  /* ----------  OUTER WRAPPER  ---------- */
+  .tabs-wrapper{
+    max-width:1200px; margin:0 auto; border:1px solid #111; padding:2rem;
+  }
+
+  /* ----------  TAB BAR  ---------- */
+  .tab-bar{
+    display:flex; flex-wrap:wrap; border:1px solid #111; border-bottom:none;
+  }
+  .tab{
+    flex:1 1 160px;                  /* responsive width, min 160 px */
+    padding:1.2rem; text-align:center; cursor:pointer;
+    font-weight:700; border-right:1px solid #111;
+    transition:background .15s;
+  }
+  .tab:last-child{border-right:none;}
+  .tab[aria-selected="true"]{background:#fff;}   /* active */
+  .tab[aria-selected="false"]{background:#f9f9f9;}
+
+  /* ----------  PANEL  ---------- */
+  .panel{
+    display:none; border:1px solid #111; padding:2rem; gap:3rem;
+  }
+  .panel.active{display:flex;}
+  .panel img{width:100%; max-width:350px; background:#d9d9d9;}
+  .panel-content{flex:1;}
+  .panel h6{font-size:.9rem; margin-bottom:.5rem; text-transform:uppercase;}
+  .panel h2{font-size:2.5rem; line-height:1.15; margin:1rem 0;}
+  .panel p{max-width:45ch; line-height:1.45; margin-bottom:1.5rem;}
+
+  .btn-row{display:flex; gap:1rem;}
+  .btn{
+    padding:.9rem 2.5rem; font-weight:600; cursor:pointer;
+    border:1px solid #111; background:#fff; transition:background .2s;
+  }
+  .btn:hover{background:#f3f3f3;}
+
+  /* ----------  MOBILE  ---------- */
+  @media(max-width:768px){
+    .panel{flex-direction:column;}
+    .panel img{max-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<div class="tabs-wrapper">
+  <!-- TAB HEADERS -->
+  <nav class="tab-bar" role="tablist">
+    <div class="tab" role="tab" aria-selected="true"  data-panel="p1">Tab one</div>
+    <div class="tab" role="tab" aria-selected="false" data-panel="p2">Tab two</div>
+    <div class="tab" role="tab" aria-selected="false" data-panel="p3">Tab three</div>
+    <div class="tab" role="tab" aria-selected="false" data-panel="p4">Tab four</div>
+    <div class="tab" role="tab" aria-selected="false" data-panel="p5">Tab five</div>
+    <div class="tab" role="tab" aria-selected="false" data-panel="p6">Tab six</div>
+  </nav>
+
+  <!-- TAB PANELS -->
+  <section id="p1" class="panel active" role="tabpanel">
+      <img alt="" />
+      <div class="panel-content">
+          <h6>Tagline</h6>
+          <h2>Medium length section<br>heading goes here</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+          <div class="btn-row">
+            <button class="btn">Explore</button>
+            <button class="btn">Browse &rsaquo;</button>
+          </div>
+      </div>
+  </section>
+
+  <!-- duplicate / change content for other panels -->
+  <section id="p2" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Two Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
+  <section id="p3" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Three Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
+  <section id="p4" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Four Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
+  <section id="p5" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Five Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
+  <section id="p6" class="panel" role="tabpanel"><img alt="" /><div class="panel-content"><h6>Tagline</h6><h2>Tab Six Heading</h2><p>Replace copy…</p><div class="btn-row"><button class="btn">Explore</button></div></div></section>
+</div>
+
+<script>
+  /* simple tab switcher */
+  const tabs   = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=> {
+      /* update tab states */
+      tabs.forEach(t=>t.setAttribute('aria-selected',false));
+      tab.setAttribute('aria-selected',true);
+
+      /* show matching panel */
+      panels.forEach(p=>p.classList.remove('active'));
+      document.getElementById(tab.dataset.panel).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
