@@ -3,51 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tabbed Mini-Site (3 Tabs)</title>
+<title>Tabbed Mini-Site (No Box)</title>
 <style>
+  /* RESET & BASE */
   *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Helvetica,Arial,sans-serif;}
 
-  .tabs-wrapper{max-width:1200px;margin:0 auto;padding:1.2rem 0;}
+  /* OUTER WRAPPER — only minimal vertical breathing-room */
+  .tabs-wrapper{max-width:1200px;margin:0 auto;padding:1rem 0;}
 
-  /* ───── TAB BAR ───── */
+  /* ── TAB BAR ─────────────────────────────────────── */
   .tab-bar{
     display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
-    border:1px solid #d1d1d1;border-bottom:none;
   }
   .tab-bar::-webkit-scrollbar{display:none;}
   .tab{
-    flex:1 1 160px;padding:.9rem 1rem;text-align:center;cursor:pointer;
+    flex:1 1 150px;padding:.8rem 1rem;text-align:center;cursor:pointer;
     white-space:nowrap;font-weight:700;font-size:clamp(.8rem,2.6vw,.95rem);
-    border-right:1px solid #d1d1d1;transition:background .15s;
+    transition:background .15s;
   }
-  .tab:last-child{border-right:none;}
   .tab[aria-selected="true"] {background:#fff;}
-  .tab[aria-selected="false"]{background:#f9f9f9;}
+  .tab[aria-selected="false"]{background:#f1f1f1;}
 
-  /* ───── PANELS ───── */
+  /* ── PANELS ─────────────────────────────────────── */
   .panel{
-    display:none;border:1px solid #d1d1d1;padding:1.6rem 2rem;gap:2.5rem;
+    display:none;padding:1rem 0;gap:2rem;               /* slimmer padding */
   }
   .panel.active{display:flex;}
-  .panel img{width:100%;max-width:320px;border-radius:6px;}
+  .panel img{width:100%;max-width:310px;border-radius:6px;}
   .panel-content{flex:1;display:flex;flex-direction:column;}
-  .panel h6{font-size:.78rem;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.04em;}
-  .panel h2{font-size:2rem;line-height:1.2;margin:1rem 0;}
-  .panel p{max-width:45ch;line-height:1.45;margin-bottom:1.2rem;font-size:.95rem;}
+  .panel h6{font-size:.76rem;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.04em;}
+  .panel h2{font-size:1.85rem;line-height:1.2;margin:1rem 0;}
+  .panel p{max-width:45ch;line-height:1.45;margin-bottom:1.1rem;font-size:.92rem;}
   .btn-row{display:flex;gap:1rem;margin-top:auto;}
 
-  /* ───── BUTTONS ───── */
+  /* ── BUTTONS ───────────────────────────────────── */
   .btn{
-    padding:.9rem 2rem;font-weight:600;border:1px solid #111;background:#fff;cursor:pointer;
+    padding:.8rem 2rem;font-weight:600;border:1px solid #111;background:#fff;cursor:pointer;
     transition:background .18s,color .18s,transform .18s,box-shadow .18s;
   }
-  .btn:hover,
-  .btn:focus-visible{
+  .btn:hover,.btn:focus-visible{
     background:#111;color:#fff;transform:translateY(-2px);
     box-shadow:0 4px 10px rgba(0,0,0,.15);
   }
 
-  /* ───── MOBILE STACK ───── */
+  /* ── MOBILE STACK ───────────────────────────────── */
   @media(max-width:768px){
     .panel{flex-direction:column;}
     .panel img{max-width:100%;}
@@ -57,24 +56,22 @@
 <body>
 
 <div class="tabs-wrapper">
-  <!-- TAB HEADERS -->
+  <!-- TABS -->
   <nav class="tab-bar" role="tablist">
     <div class="tab" role="tab" aria-selected="true"  data-panel="p1">WHICH&nbsp;INDUSTRY?</div>
     <div class="tab" role="tab" aria-selected="false" data-panel="p2">FINANCING</div>
     <div class="tab" role="tab" aria-selected="false" data-panel="p3">TAKE&nbsp;A&nbsp;COURSE</div>
   </nav>
 
-  <!-- TAB PANELS -->
+  <!-- PANELS -->
   <section id="p1" class="panel active" role="tabpanel">
       <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=60"
            alt="People collaborating in a modern small-business workspace">
       <div class="panel-content">
           <h6>Which Industry?</h6>
           <h2>Which industry is the most aligned with your goals</h2>
-          <p>Start by identifying the sector that best matches your interests, risk tolerance, and growth objectives.</p>
-          <div class="btn-row">
-            <button class="btn">Take a Quiz</button>
-          </div>
+          <p>Find the sector that matches your interests, risk tolerance, and growth objectives.</p>
+          <div class="btn-row"><button class="btn">Take a Quiz</button></div>
       </div>
   </section>
 
@@ -85,9 +82,7 @@
           <h6>Financing</h6>
           <h2>Need financing for your small business?</h2>
           <p>Explore tailored funding solutions and calculate repayment scenarios in seconds.</p>
-          <div class="btn-row">
-            <button class="btn">Finance Calculator</button>
-          </div>
+          <div class="btn-row"><button class="btn">Finance Calculator</button></div>
       </div>
   </section>
 
@@ -98,15 +93,12 @@
           <h6>Take a Course</h6>
           <h2>Continuing education is key to being a great entrepreneur</h2>
           <p>Sharpen your skills with curated courses designed for busy founders.</p>
-          <div class="btn-row">
-            <button class="btn">Sign Up</button>
-          </div>
+          <div class="btn-row"><button class="btn">Sign Up</button></div>
       </div>
   </section>
 </div>
 
 <script>
-  /* simple tab switcher */
   const tabs   = document.querySelectorAll('.tab');
   const panels = document.querySelectorAll('.panel');
   tabs.forEach(tab=>{
